@@ -11,27 +11,29 @@ gsap.registerPlugin(useGSAP);
 
 // 4 real therapy / psychology-session scenes rotating in the hero stage.
 // Sourced from Vecteezy (free preview). Swap any file in /public/hero-N.mp4.
+const BASE = import.meta.env.BASE_URL;
+
 const SCENES = [
   {
-    video: '/hero-1.mp4',
+    video: `${BASE}hero-1.mp4`,
     poster: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=85&auto=format&fit=crop',
     alt: 'Worried man talking with a female psychologist during a therapy session',
     caption: 'Individual Therapy',
   },
   {
-    video: '/hero-2.mp4',
+    video: `${BASE}hero-2.mp4`,
     poster: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=85&auto=format&fit=crop',
     alt: 'Psychologist listening with empathy during a couple session',
     caption: 'Couples Counseling',
   },
   {
-    video: '/hero-3.mp4',
+    video: `${BASE}hero-3.mp4`,
     poster: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1600&q=85&auto=format&fit=crop',
     alt: 'Psychiatrist recording a patient condition during mental health consultation',
     caption: 'Mental Health Support',
   },
   {
-    video: '/hero-4.mp4',
+    video: `${BASE}hero-4.mp4`,
     poster: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1600&q=85&auto=format&fit=crop',
     alt: 'Therapist listening to a patient receiving psychiatric support',
     caption: 'Psychiatric Care',
