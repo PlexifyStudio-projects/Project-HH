@@ -1,0 +1,1034 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// CARE TEAM — Haven Home Health · 2026 Editorial
+// Bento grid (1 featured + 4) · credential marquee · enhanced pillars
+// ============================================================
+
+.hv-team {
+  position: relative;
+  padding-block: $spacing-4xl;
+  background: $color-white;
+  color: $color-text-ink;
+  isolation: isolate;
+  overflow: hidden;
+
+  @include respond-to(md) { padding-block: $spacing-5xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba($color-primary-mist, 0.7) 0%, transparent 45%),
+      radial-gradient(ellipse at 0% 100%, rgba($color-accent, 0.05) 0%, transparent 40%);
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 2;
+    @include container;
+  }
+}
+
+// ============================================================
+// HEAD
+// ============================================================
+
+.hv-team__head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.1fr 1fr;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    align-items: end;
+  }
+}
+
+.hv-team__head-left,
+.hv-team__head-right {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.hv-team__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: rgba($color-primary-mist, 0.9);
+  border: 1px solid rgba($color-primary, 0.16);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+  align-self: flex-start;
+
+  svg { color: $color-accent; flex-shrink: 0; }
+}
+
+.hv-team__eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 10px rgba($color-accent, 0.55);
+  animation: hv-team-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hv-team-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+.hv-team__title {
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.024em;
+  color: $color-text-ink;
+  margin: 0;
+  font-variation-settings: 'opsz' 144;
+
+  em {
+    font-style: italic;
+    background: linear-gradient(110deg, $color-accent 0%, $color-accent-dark 60%, $color-primary 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hv-team__title-line { display: block; padding: 0.02em 0.02em; }
+
+.hv-team__sub {
+  font-family: $font-primary;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: $color-text-medium;
+  max-width: 520px;
+  margin: 0;
+
+  @include respond-to(md) { font-size: 1.02rem; }
+}
+
+.hv-team__head-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-sm;
+  margin: $spacing-sm 0 0;
+  padding-top: $spacing-md;
+  border-top: 1px dashed rgba($color-primary, 0.22);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  dt {
+    font-family: $font-heading;
+    font-weight: $font-weight-regular;
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    line-height: 1;
+    color: $color-primary-deep;
+    letter-spacing: -0.015em;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 0.58rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-text-light;
+  }
+}
+
+// ============================================================
+// CREDENTIAL MARQUEE — infinite scroll of licensing acronyms
+// ============================================================
+
+.hv-team__marquee {
+  position: relative;
+  margin: 0 calc(#{$container-padding} * -1) $spacing-2xl;
+  padding: 14px 0;
+  border-top: 1px solid rgba($color-primary, 0.12);
+  border-bottom: 1px solid rgba($color-primary, 0.12);
+  background:
+    linear-gradient(90deg, $color-white 0%, transparent 4%, transparent 96%, $color-white 100%),
+    linear-gradient(100deg, rgba($color-primary-mist, 0.4) 0%, rgba($color-white, 0.6) 100%);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+
+  &-track {
+    display: inline-flex;
+    gap: $spacing-lg;
+    padding-inline: $spacing-lg;
+    white-space: nowrap;
+    animation: hv-team-marquee 55s linear infinite;
+    will-change: transform;
+  }
+
+  &-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-primary-deep;
+  }
+
+  &-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: $color-accent;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba($color-accent, 0.4);
+  }
+}
+
+@keyframes hv-team-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+// ============================================================
+// BENTO — featured + supporting
+// ============================================================
+
+.hv-team__bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  margin-bottom: $spacing-2xl;
+
+  @media (min-width: 1040px) {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-3xl;
+  }
+}
+
+// ── Supporting grid — 2x2 ──
+.hv-team__supporting {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// ============================================================
+// CARD (shared)
+// ============================================================
+
+.hv-team__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  overflow: hidden;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+  isolation: isolate;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba($color-primary, 0.22);
+    box-shadow:
+      0 24px 60px -24px rgba($color-primary-deep, 0.25),
+      0 6px 16px -6px rgba($color-primary-deep, 0.06);
+
+    .hv-team__card-img     { transform: scale(1.06); }
+    .hv-team__card-overlay { opacity: 1; }
+    .hv-team__card-quote   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+.hv-team__card-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: $color-primary-deep;
+  isolation: isolate;
+}
+
+.hv-team__card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.04);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hv-team__card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 35%, rgba($color-primary-deep, 0.88) 100%);
+  opacity: 0.88;
+  transition: opacity 0.5s ease;
+}
+
+.hv-team__card-tags {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hv-team__card-role,
+.hv-team__card-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.52rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $color-white;
+}
+
+.hv-team__card-role {
+  background: rgba($color-primary-deep, 0.55);
+  border: 1px solid rgba($color-white, 0.24);
+
+  svg { color: $color-accent-light; flex-shrink: 0; }
+}
+
+.hv-team__card-chip {
+  background: rgba($color-accent, 0.22);
+  border: 1px solid rgba($color-accent-light, 0.4);
+  color: $color-accent-light;
+
+  svg { color: $color-accent-light; flex-shrink: 0; }
+}
+
+// position role alone when no tags wrapper
+.hv-team__card-media > .hv-team__card-role {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+}
+
+.hv-team__card-quote {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  padding: 12px 14px;
+  background: rgba($color-primary-deep, 0.55);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba($color-white, 0.22);
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+
+  p {
+    margin: 0;
+    font-family: $font-heading;
+    font-style: italic;
+    font-weight: $font-weight-regular;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: rgba($color-white, 0.95);
+  }
+}
+
+.hv-team__card-quote-mark {
+  display: block;
+  margin-bottom: -6px;
+  font-family: $font-heading;
+  font-size: 2rem;
+  line-height: 1;
+  color: $color-accent-light;
+  opacity: 0.8;
+}
+
+.hv-team__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: $spacing-md;
+  border-top: 1px solid $color-border;
+}
+
+.hv-team__card-info-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hv-team__card-name {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.05rem;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: $color-text-ink;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__card-tenure {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: $border-radius-pill;
+  background: rgba($color-accent, 0.1);
+  border: 1px solid rgba($color-accent, 0.25);
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-accent-dark;
+  flex-shrink: 0;
+
+  svg { color: $color-accent; }
+}
+
+.hv-team__card-creds {
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+.hv-team__card-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin: 4px 0 0;
+  padding-top: $spacing-sm;
+  border-top: 1px dashed rgba($color-primary, 0.18);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  dt {
+    font-family: $font-mono;
+    font-size: 0.5rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-text-light;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-primary;
+    font-size: 0.78rem;
+    font-weight: $font-weight-medium;
+    color: $color-text-dark;
+    line-height: 1.3;
+  }
+}
+
+// ============================================================
+// FEATURED CARD — editorial hero
+// ============================================================
+
+.hv-team__card--featured {
+  grid-row: span 1;
+
+  @media (min-width: 1040px) {
+    display: grid;
+    grid-template-rows: minmax(0, 1.1fr) auto;
+  }
+}
+
+.hv-team__card-media--featured {
+  aspect-ratio: 4 / 5;
+
+  @media (min-width: 1040px) {
+    aspect-ratio: auto;
+    min-height: 480px;
+  }
+}
+
+.hv-team__card-info--featured {
+  gap: 12px;
+  padding: $spacing-lg;
+
+  @include respond-to(md) { padding: $spacing-xl; }
+}
+
+// Big editorial nameplate at the bottom of the media
+.hv-team__featured-nameplate {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: $color-white;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__featured-firstname {
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-style: italic;
+  color: $color-accent-light;
+}
+
+.hv-team__featured-lastname {
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+  margin-top: -6px;
+}
+
+// Rotating circular seal (top-right)
+.hv-team__featured-seal {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width: 110px;
+  height: 110px;
+  pointer-events: none;
+
+  @media (max-width: 560px) { width: 92px; height: 92px; }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    color: rgba($color-white, 0.8);
+  }
+}
+
+.hv-team__featured-seal-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-white;
+  box-shadow:
+    0 8px 18px -6px rgba($color-accent, 0.6),
+    inset 0 1px 0 rgba($color-white, 0.3);
+}
+
+.hv-team__featured-bio {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: $color-text-medium;
+}
+
+.hv-team__featured-quote {
+  margin: 0;
+  padding: $spacing-md $spacing-md;
+  background: linear-gradient(
+    100deg,
+    rgba($color-primary-mist, 0.7) 0%,
+    rgba($color-white, 0.9) 100%
+  );
+  border-left: 2px solid $color-accent;
+  border-radius: 0 14px 14px 0;
+  font-family: $font-heading;
+  font-style: italic;
+  font-weight: $font-weight-regular;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $color-primary-deep;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__featured-quote-mark {
+  display: inline-block;
+  margin-right: 4px;
+  font-family: $font-heading;
+  font-size: 1.8em;
+  line-height: 0;
+  vertical-align: -0.24em;
+  color: $color-accent;
+}
+
+.hv-team__featured-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-sm;
+  margin: 0;
+  padding-top: $spacing-md;
+  border-top: 1px dashed rgba($color-primary, 0.22);
+
+  > div { display: flex; flex-direction: column; gap: 2px; }
+
+  dt {
+    font-family: $font-mono;
+    font-size: 0.5rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-text-light;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-heading;
+    font-size: 1.05rem;
+    font-weight: $font-weight-regular;
+    color: $color-primary-deep;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+  }
+}
+
+// ============================================================
+// PILLARS — Why Haven (dark editorial card)
+// ============================================================
+
+.hv-team__pillars-wrap {
+  position: relative;
+  padding: $spacing-xl $spacing-lg;
+  background: linear-gradient(165deg, $color-primary-deep 0%, #0F3573 45%, $color-primary 100%);
+  color: $color-white;
+  border-radius: 28px;
+  box-shadow:
+    0 40px 80px -32px rgba($color-primary-deep, 0.45),
+    inset 0 1px 0 rgba($color-white, 0.14);
+  isolation: isolate;
+  overflow: hidden;
+
+  @include respond-to(md) { padding: $spacing-2xl; }
+  @include respond-to(lg) { padding: $spacing-3xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 10% 10%, rgba($color-white, 0.07) 1px, transparent 1px);
+    background-size: 90px 90px;
+    opacity: 0.75;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -140px;
+    top: -140px;
+    width: 460px;
+    height: 460px;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba($color-accent, 0.38) 0%, transparent 65%);
+    filter: blur(50px);
+  }
+}
+
+.hv-team__pillars-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: $spacing-2xl;
+  max-width: 720px;
+}
+
+.hv-team__pillars-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 0.62rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+  align-self: flex-start;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    margin-right: 12px;
+    background: $color-accent-light;
+    opacity: 0.85;
+  }
+}
+
+.hv-team__pillars-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(1.55rem, 3.2vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $color-white;
+  font-variation-settings: 'opsz' 144;
+  max-width: 18ch;
+
+  em {
+    font-style: italic;
+    color: $color-accent-light;
+  }
+}
+
+.hv-team__pillars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1040px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.hv-team__pillar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: $spacing-lg $spacing-md $spacing-md;
+  background: linear-gradient(
+    165deg,
+    rgba($color-white, 0.07) 0%,
+    rgba($color-white, 0.02) 100%
+  );
+  border: 1px solid rgba($color-white, 0.14);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    background 0.4s ease;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 320px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 55%, rgba($color-primary-deep, 0.25) 100%);
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($color-accent-light, 0.35);
+    background: linear-gradient(
+      165deg,
+      rgba($color-white, 0.11) 0%,
+      rgba($color-white, 0.03) 100%
+    );
+
+    .hv-team__pillar-icon-glow { opacity: 1; transform: scale(1.3); }
+    .hv-team__pillar-icon      { border-color: rgba($color-accent-light, 0.5); }
+    .hv-team__pillar-num       { color: $color-accent-light; }
+    .hv-team__pillar-corner    { transform: rotate(45deg) scale(1.2); opacity: 1; }
+    .hv-team__pillar-stat-value { color: $color-accent-light; }
+    &::before                  { opacity: 1; }
+  }
+
+  > * { position: relative; z-index: 1; }
+}
+
+.hv-team__pillar-num {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  z-index: 0;
+  font-family: $font-heading;
+  font-style: italic;
+  font-weight: $font-weight-light;
+  font-size: clamp(4.2rem, 7vw, 5.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba($color-white, 0.1);
+  pointer-events: none;
+  transition: color 0.5s ease;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__pillar-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba($color-white, 0.12) 0%,
+    rgba($color-white, 0.04) 100%
+  );
+  border: 1px solid rgba($color-white, 0.22);
+  color: $color-accent-light;
+  box-shadow: inset 0 1px 0 rgba($color-white, 0.2);
+  transition: border-color 0.4s ease;
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+.hv-team__pillar-icon-glow {
+  position: absolute;
+  inset: -18px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba($color-accent, 0.5) 0%, transparent 65%);
+  opacity: 0.55;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hv-team__pillar-body-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.hv-team__pillar-label {
+  font-family: $font-mono;
+  font-size: 0.56rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+}
+
+.hv-team__pillar-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.18rem;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  color: $color-white;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__pillar-body {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba($color-white, 0.72);
+}
+
+// New stat block at bottom
+.hv-team__pillar-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: $spacing-sm;
+  border-top: 1px dashed rgba($color-white, 0.18);
+}
+
+.hv-team__pillar-stat-value {
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: $color-white;
+  transition: color 0.4s ease;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-team__pillar-stat-label {
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: rgba($color-white, 0.58);
+}
+
+.hv-team__pillar-corner {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 22px;
+  height: 22px;
+  display: block;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  background-image:
+    linear-gradient(135deg, transparent 0%, transparent 48%, $color-accent 48%, $color-accent 52%, transparent 52%),
+    linear-gradient(45deg, transparent 0%, transparent 48%, rgba($color-white, 0.35) 48%, rgba($color-white, 0.35) 52%, transparent 52%);
+  background-size: 100% 100%, 60% 60%;
+  background-repeat: no-repeat;
+  background-position: center, center;
+  border-radius: 4px;
+}
+
+// ============================================================
+// FOOT — Manifesto quote + CTA
+// ============================================================
+
+.hv-team__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-xl;
+  border-top: 1px solid $color-border;
+
+  @media (min-width: 860px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+}
+
+.hv-team__foot-quote {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 $spacing-md;
+  border-left: 2px solid $color-accent;
+  font-family: $font-heading;
+  font-style: italic;
+  font-weight: $font-weight-regular;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.45;
+  color: $color-text-ink;
+  max-width: 640px;
+  font-variation-settings: 'opsz' 144;
+
+  cite {
+    display: block;
+    margin-top: 10px;
+    font-family: $font-mono;
+    font-style: normal;
+    font-size: 0.6rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-text-light;
+  }
+}
+
+.hv-team__foot-quote-mark {
+  display: inline-block;
+  margin-right: 4px;
+  font-family: $font-heading;
+  font-size: 1.6em;
+  line-height: 0;
+  vertical-align: -0.2em;
+  color: $color-accent;
+  font-style: italic;
+}
+
+.hv-team__foot-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: $color-primary-deep;
+  color: $color-white;
+  border-radius: $border-radius-pill;
+  font-family: $font-primary;
+  font-size: 0.84rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all $transition-elegant;
+
+  svg { transition: transform $transition-elegant; }
+
+  &:hover {
+    background: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px rgba($color-primary-deep, 0.5);
+    svg { transform: translate(3px, -3px); }
+  }
+}
+
+// ============================================================
+// Reduced motion
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-team *,
+  .hv-team *::before,
+  .hv-team *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hv-team__marquee-track { animation: none; }
+}

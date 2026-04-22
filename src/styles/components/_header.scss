@@ -1,0 +1,600 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// HEADER — Haven Home Health · Clinical Institutional
+// Reference: Mayo Clinic / Cleveland Clinic / Johns Hopkins
+// No "LIVE" badges · no stat tickers · no icon-in-circle buttons
+// Just trust, credentials, typography, whitespace.
+// ============================================================
+
+.hh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-index-header;
+  transition: box-shadow $transition-elegant, background $transition-base;
+
+  // ── Scrolled state: frosted glass ──
+  &--scrolled {
+    box-shadow:
+      0 1px 0 rgba($color-primary-deep, 0.04),
+      0 10px 30px -8px rgba($color-primary-deep, 0.08);
+
+    .hh-util  { max-height: 0; opacity: 0; overflow: hidden; padding: 0; border: 0; }
+    .hh-creds { max-height: 0; opacity: 0; overflow: hidden; padding: 0; border: 0; }
+
+    .hh-main {
+      background: rgba($color-white, 0.72);
+      backdrop-filter: blur(26px) saturate(1.6);
+      -webkit-backdrop-filter: blur(26px) saturate(1.6);
+      border-bottom: 1px solid rgba($color-white, 0.45);
+    }
+
+    .hh-brand__mark {
+      transform: scale(0.92);
+    }
+
+    .hh-cta {
+      padding: 10px 18px;
+      font-size: 0.84rem;
+    }
+  }
+
+  &__skip {
+    position: absolute;
+    top: 4px; left: 4px;
+    padding: 8px 16px;
+    background: $color-primary;
+    color: $color-white;
+    font-size: 0.8rem;
+    border-radius: $border-radius-pill;
+    transform: translateY(-200%);
+    transition: transform 0.2s ease;
+    z-index: 1000;
+
+    &:focus, &:focus-visible { transform: translateY(0); outline: 2px solid $color-accent; outline-offset: 2px; }
+  }
+
+  a:focus-visible, button:focus-visible { @include focus-ring; }
+}
+
+// ============================================================
+// UTILITY BAR — institutional utility row (like Cleveland Clinic)
+// ============================================================
+.hh-util {
+  background: #F2F5F9; // very light blue-gray, institutional
+  border-bottom: 1px solid #E1E7EF;
+  transition: max-height $transition-elegant, opacity $transition-base;
+  max-height: 44px;
+
+  &__wrap {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 7px;
+    gap: $spacing-md;
+    font-family: $font-primary;
+    font-size: 0.72rem;
+    color: $color-text-medium;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    @media (max-width: 720px) { display: none; }
+
+    a {
+      color: $color-text-medium;
+      transition: color $transition-base;
+      letter-spacing: 0.005em;
+
+      &:hover { color: $color-primary; }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-left: auto;
+  }
+
+  &__hours {
+    display: none;
+
+    @include respond-to(md) {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: $color-text-light;
+      font-size: 0.7rem;
+    }
+  }
+
+  &__hours-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #3FA67A;
+    box-shadow: 0 0 0 2px rgba(#3FA67A, 0.18);
+  }
+
+  &__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: $font-weight-semibold;
+    color: $color-primary-deep;
+    letter-spacing: 0.005em;
+    transition: color $transition-base;
+
+    svg { color: $color-primary; }
+
+    &:hover { color: $color-primary; }
+  }
+}
+
+// ============================================================
+// MAIN BAR — clinical white, institutional spacing
+// ============================================================
+.hh-main {
+  background: $color-white;
+  transition: background $transition-base, backdrop-filter $transition-base, border-color $transition-base, padding $transition-elegant;
+  border-bottom: 1px solid #EDEFF3;
+  padding: 12px 0;
+
+  @include respond-to(md) { padding: 18px 0; }
+
+  &__wrap {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-sm;
+
+    @include respond-to(md) { gap: $spacing-md; }
+  }
+}
+
+// ── Brand — clean institutional mark ──
+.hh-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  transition: opacity $transition-base;
+
+  &:hover { opacity: 0.85; }
+
+  &__mark {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    box-shadow: 0 4px 12px -4px rgba($color-primary, 0.25);
+
+    @include respond-to(sm) { width: 48px; height: 48px; border-radius: 12px; }
+    @include respond-to(md) { width: 52px; height: 52px; }
+
+    svg { width: 100%; height: 100%; display: block; }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-weight: $font-weight-regular;
+    font-size: 1.1rem;
+    color: $color-primary-deep;
+    letter-spacing: -0.005em;
+    line-height: 1.1;
+
+    @include respond-to(sm) { font-size: 1.3rem; }
+    @include respond-to(md) { font-size: 1.45rem; }
+  }
+
+  &__tagline {
+    display: none;
+    font-family: $font-primary;
+    font-size: 0.72rem;
+    font-weight: $font-weight-regular;
+    color: $color-text-light;
+    letter-spacing: 0.005em;
+    line-height: 1.2;
+
+    @include respond-to(sm) { display: block; font-size: 0.74rem; }
+    @include respond-to(md) { font-size: 0.78rem; }
+  }
+}
+
+// ── Nav — clean text links, institutional ──
+.hh-nav {
+  display: none;
+
+  @media (min-width: 960px) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-family: $font-primary;
+    font-size: 0.88rem;
+    font-weight: $font-weight-medium;
+    color: $color-text-dark;
+    letter-spacing: 0.005em;
+    transition: color $transition-base;
+
+    @include respond-to(lg) { padding: 10px 18px; font-size: 0.9rem; gap: 9px; }
+
+    // Icon — subtle medical accent, no badge
+    svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: $color-primary;
+      opacity: 0.72;
+      transition: opacity $transition-base, color $transition-base, transform $transition-elegant;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 4px;
+      height: 2px;
+      background: $color-primary;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform $transition-elegant;
+
+      @include respond-to(lg) { left: 18px; right: 18px; }
+    }
+
+    &:hover {
+      color: $color-primary;
+
+      svg {
+        opacity: 1;
+        color: $color-primary;
+        transform: translateY(-1px);
+      }
+
+      &::after { transform: scaleX(1); }
+    }
+  }
+}
+
+// ── Actions ──
+.hh-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+// Talk to a care advisor — quiet, informational (NOT transactional)
+.hh-call {
+  display: none;
+
+  @media (min-width: 1100px) {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 6px 14px;
+    border-right: 1px solid $color-border;
+    color: $color-text-dark;
+    text-decoration: none;
+    line-height: 1.1;
+    transition: color $transition-base;
+
+    svg { display: none; }
+
+    &__label {
+      font-family: $font-primary;
+      font-size: 0.7rem;
+      color: $color-text-light;
+      letter-spacing: 0.005em;
+    }
+
+    &__num {
+      font-family: $font-heading;
+      font-weight: $font-weight-regular;
+      font-size: 1.05rem;
+      color: $color-primary-deep;
+      letter-spacing: -0.005em;
+    }
+
+    &:hover .hh-call__num { color: $color-primary; }
+  }
+}
+
+// Primary CTA — single, clinical, not shouting
+.hh-cta {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-family: $font-primary;
+  font-size: 0.82rem;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  background: $color-primary;
+  border-radius: 8px;
+  letter-spacing: 0.005em;
+  transition: all $transition-elegant;
+
+  @include respond-to(sm) { display: inline-flex; padding: 11px 20px; font-size: 0.86rem; }
+  @include respond-to(md) { padding: 12px 22px; }
+
+  svg { transition: transform $transition-elegant; }
+
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -8px rgba($color-primary, 0.4);
+    svg { transform: translateX(3px); }
+  }
+}
+
+// Burger
+.hh-burger {
+  @include flex-center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 1px solid $color-border-strong;
+  background: $color-white;
+  transition: all $transition-base;
+
+  @include respond-to(sm) { width: 42px; height: 42px; }
+
+  &:hover { border-color: $color-primary; background: $color-primary-mist; }
+
+  @media (min-width: 960px) { display: none; }
+}
+
+.hh-burger__bar {
+  width: 18px; height: 1.5px;
+  background: $color-primary-deep;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute; left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &::before { top: -6px; }
+  &::after  { bottom: -6px; width: 70%; }
+
+  &.is-open {
+    background: transparent;
+    &::before { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    &::after  { width: 100%; transform: rotate(-45deg) translate(4.5px, -4.5px); }
+  }
+}
+
+// ============================================================
+// CREDENTIALS STRIP — quiet institutional proof
+// (replaces the flashy "LIVE" stat ticker)
+// ============================================================
+.hh-creds {
+  background: $color-white;
+  border-bottom: 1px solid #EDEFF3;
+  transition: max-height $transition-elegant, opacity $transition-base;
+
+  @media (max-width: 720px) { display: none; }
+
+  &__wrap {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-lg;
+    padding-block: 9px;
+    flex-wrap: wrap;
+  }
+
+  &__prefix {
+    font-family: $font-primary;
+    font-size: 0.7rem;
+    font-weight: $font-weight-medium;
+    color: $color-text-light;
+    letter-spacing: 0.02em;
+  }
+
+  &__list {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-primary;
+    font-size: 0.72rem;
+    font-weight: $font-weight-medium;
+    color: $color-text-dark;
+    letter-spacing: 0.005em;
+
+    svg { color: $color-primary; opacity: 0.8; }
+
+    // subtle separator
+    &:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 10px;
+      background: $color-border;
+      margin-left: $spacing-md;
+    }
+  }
+
+  &__suffix {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding-left: $spacing-md;
+    border-left: 1px solid $color-border;
+    font-family: $font-primary;
+    font-size: 0.72rem;
+    font-weight: $font-weight-medium;
+    color: $color-text-medium;
+
+    svg { color: $color-accent; }
+
+    @media (max-width: 900px) { display: none; }
+  }
+}
+
+// ============================================================
+// Mobile drawer
+// ============================================================
+.hh-mob {
+  position: fixed;
+  inset: 0;
+  background: $color-white;
+  padding: 88px $spacing-md $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: $z-index-header - 1;
+  clip-path: inset(0 0 100% 0);
+
+  @include respond-to(sm) { padding: 100px $spacing-lg $spacing-xl; }
+
+  @media (min-width: 960px) { display: none !important; }
+
+  &__head {
+    padding-bottom: $spacing-sm;
+    margin-bottom: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    font-family: $font-primary;
+    font-size: 0.7rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-text-light;
+  }
+
+  &__link {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid rgba($color-primary-deep, 0.05);
+    transition: padding-left $transition-base;
+
+    &:hover {
+      padding-left: $spacing-sm;
+      .hh-mob__link-label { color: $color-primary; }
+      .hh-mob__link-arrow { opacity: 1; transform: translate(0, 0); }
+    }
+
+    &-num {
+      font-family: $font-primary;
+      font-size: 0.68rem;
+      font-weight: $font-weight-medium;
+      color: $color-text-light;
+      letter-spacing: 0.06em;
+    }
+
+    &-label {
+      font-family: $font-heading;
+      font-size: 1.35rem;
+      font-weight: $font-weight-regular;
+      color: $color-text-ink;
+      letter-spacing: -0.005em;
+
+      @include respond-to(sm) { font-size: 1.6rem; }
+    }
+
+    &-arrow {
+      color: $color-primary;
+      opacity: 0.4;
+      transform: translate(-5px, 5px);
+      transition: all $transition-elegant;
+    }
+  }
+
+  &__util {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm $spacing-md;
+    padding: $spacing-md 0;
+    margin-top: $spacing-md;
+    border-top: 1px solid $color-border;
+    font-family: $font-primary;
+    font-size: 0.78rem;
+    color: $color-text-medium;
+
+    a {
+      color: $color-text-medium;
+      &:hover { color: $color-primary; }
+    }
+  }
+
+  &__foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $color-border;
+  }
+
+  &__call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    font-family: $font-heading;
+    font-size: 1.05rem;
+    color: $color-primary-deep;
+    border: 1px solid $color-border-strong;
+    border-radius: 10px;
+
+    svg { color: $color-primary; }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    font-family: $font-primary;
+    font-size: 0.9rem;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+    background: $color-primary;
+    border-radius: 10px;
+
+    svg { transition: transform $transition-elegant; }
+
+    &:hover svg { transform: translateX(3px); }
+  }
+}

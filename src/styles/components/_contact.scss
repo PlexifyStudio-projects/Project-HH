@@ -1,0 +1,834 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// CONTACT — Haven Home Health · Multi-channel + form
+// ============================================================
+
+.hv-contact {
+  position: relative;
+  padding-block: $spacing-4xl;
+  background: $color-off-white;
+  color: $color-text-ink;
+  isolation: isolate;
+  overflow: hidden;
+
+  @include respond-to(md) { padding-block: $spacing-5xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba($color-primary-mist, 0.6) 0%, transparent 45%),
+      radial-gradient(ellipse at 100% 100%, rgba($color-accent, 0.05) 0%, transparent 45%);
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 2;
+    @include container;
+  }
+}
+
+// ── Urgent strip ──
+.hv-contact__urgent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  margin-bottom: $spacing-xl;
+  background: linear-gradient(100deg, rgba(#DC3545, 0.08) 0%, rgba($color-accent-soft, 0.3) 100%);
+  border: 1px solid rgba(#DC3545, 0.28);
+  border-radius: 12px;
+  font-family: $font-primary;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: $color-text-dark;
+
+  strong { color: #B02A35; font-weight: $font-weight-semibold; }
+
+  a {
+    color: #B02A35;
+    font-weight: $font-weight-semibold;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.hv-contact__urgent-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #DC3545;
+  color: $color-white;
+  flex-shrink: 0;
+}
+
+// ── HEAD ──
+.hv-contact__head {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  max-width: 820px;
+  margin: 0 auto $spacing-xl;
+  align-items: flex-start;
+
+  @include respond-to(md) {
+    align-items: center;
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+  }
+}
+
+.hv-contact__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: rgba($color-white, 0.92);
+  border: 1px solid rgba($color-primary, 0.18);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+
+  svg { color: $color-accent; flex-shrink: 0; }
+}
+
+.hv-contact__eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 10px rgba($color-accent, 0.55);
+  animation: hv-contact-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hv-contact-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+.hv-contact__title {
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(1.95rem, 4.6vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.024em;
+  color: $color-text-ink;
+  margin: 0;
+  font-variation-settings: 'opsz' 144;
+
+  em {
+    font-style: italic;
+    background: linear-gradient(110deg, $color-accent 0%, $color-accent-dark 60%, $color-primary 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hv-contact__title-line { display: block; padding: 0.02em; }
+
+.hv-contact__sub {
+  font-family: $font-primary;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: $color-text-medium;
+  max-width: 640px;
+  margin: 0;
+
+  @include respond-to(md) { font-size: 1.02rem; }
+}
+
+// ============================================================
+// CHANNELS — 4 entry points
+// ============================================================
+
+.hv-contact__channels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  padding: 0;
+  margin: 0 0 $spacing-2xl;
+  list-style: none;
+
+  @include respond-to(sm)    { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 1000px) { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: $spacing-md; }
+}
+
+.hv-contact__channel {
+  --tone: #{$color-primary};
+  --tone-deep: #{$color-primary-deep};
+  --tone-wash: #{$color-primary-mist};
+
+  &[data-tone="accent"] { --tone: #E07A3C; --tone-deep: #B85A1E; --tone-wash: #FDEFE3; }
+  &[data-tone="teal"]   { --tone: #3B8AA8; --tone-deep: #1F5F78; --tone-wash: #E4F1F7; }
+  &[data-tone="sage"]   { --tone: #4A8F7C; --tone-deep: #2F6A5C; --tone-wash: #E7F2EE; }
+  &[data-tone="rose"]   { --tone: #D46B8E; --tone-deep: #9E4867; --tone-wash: #FBECF2; }
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: $spacing-md $spacing-md $spacing-md $spacing-md;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 18px;
+  text-decoration: none;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--tone) 0%, var(--tone-deep) 100%);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--tone) 30%, transparent);
+    box-shadow: 0 20px 44px -22px color-mix(in srgb, var(--tone-deep) 30%, transparent);
+
+    &::before { transform: scaleX(1); }
+
+    .hv-contact__channel-icon {
+      background: linear-gradient(135deg, var(--tone) 0%, var(--tone-deep) 100%);
+      color: $color-white;
+      border-color: transparent;
+    }
+
+    .hv-contact__channel-arrow { transform: translateX(4px); color: var(--tone-deep); }
+  }
+}
+
+.hv-contact__channel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tone-wash);
+  border: 1px solid color-mix(in srgb, var(--tone) 15%, transparent);
+  color: var(--tone-deep);
+  transition: all 0.4s ease;
+  margin-bottom: 2px;
+}
+
+.hv-contact__channel-label {
+  font-family: $font-mono;
+  font-size: 0.56rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-text-light;
+}
+
+.hv-contact__channel-primary {
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: $color-text-ink;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-contact__channel-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: $font-primary;
+  font-size: 0.72rem;
+  color: $color-text-medium;
+
+  svg { color: var(--tone); }
+}
+
+.hv-contact__channel-arrow {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  color: $color-text-light;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+// ============================================================
+// SPLIT — Form + Side panel
+// ============================================================
+
+.hv-contact__split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @media (min-width: 1040px) {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+.hv-contact__panel {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 24px;
+  padding: $spacing-lg;
+  isolation: isolate;
+
+  @include respond-to(md) { padding: $spacing-xl; }
+
+  &--form {
+    box-shadow: 0 30px 60px -30px rgba($color-primary-deep, 0.15);
+  }
+
+  &--side {
+    background: linear-gradient(165deg, $color-primary-deep 0%, $color-primary-dark 60%, $color-primary 100%);
+    border-color: transparent;
+    color: $color-white;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 30px 60px -30px rgba($color-primary-deep, 0.3);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle at 10% 10%, rgba($color-white, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -100px; bottom: -100px;
+      width: 320px; height: 320px;
+      z-index: 0;
+      background: radial-gradient(circle, rgba($color-accent, 0.3) 0%, transparent 65%);
+      filter: blur(40px);
+    }
+
+    > * { position: relative; z-index: 1; }
+  }
+}
+
+// ── FORM ──
+.hv-contact__form-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.hv-contact__form-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  background: rgba($color-primary-mist, 0.8);
+  border: 1px solid rgba($color-primary, 0.16);
+  border-radius: $border-radius-pill;
+  align-self: flex-start;
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+
+  svg { color: $color-accent; }
+}
+
+.hv-contact__form-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  color: $color-text-ink;
+  font-variation-settings: 'opsz' 144;
+
+  em { font-style: italic; color: $color-accent-dark; }
+}
+
+.hv-contact__form-sub {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: $color-text-medium;
+}
+
+.hv-contact__form { display: flex; flex-direction: column; gap: $spacing-lg; }
+
+.hv-contact__form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-sm;
+
+  @include respond-to(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.hv-contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &--full { grid-column: 1 / -1; }
+}
+
+.hv-contact__fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.hv-contact__field-label {
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+
+  em {
+    font-family: $font-primary;
+    font-style: italic;
+    font-weight: $font-weight-regular;
+    font-size: 0.74rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: $color-text-light;
+    margin-left: 6px;
+  }
+}
+
+.hv-contact__field input,
+.hv-contact__field select,
+.hv-contact__field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: $color-off-white;
+  border: 1px solid rgba($color-primary, 0.16);
+  border-radius: 10px;
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  color: $color-text-dark;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+
+  &::placeholder { color: $color-text-light; opacity: 0.7; }
+
+  &:focus {
+    outline: none;
+    background: $color-white;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba($color-accent, 0.15);
+  }
+}
+
+.hv-contact__field textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.55;
+}
+
+.hv-contact__radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.hv-contact__radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: $color-off-white;
+  border: 1px solid rgba($color-primary, 0.16);
+  border-radius: $border-radius-pill;
+  font-family: $font-primary;
+  font-size: 0.82rem;
+  font-weight: $font-weight-medium;
+  color: $color-text-dark;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  &:has(input:checked) {
+    background: $color-accent;
+    border-color: $color-accent;
+    color: $color-white;
+    box-shadow: 0 6px 14px -6px rgba($color-accent, 0.5);
+  }
+
+  &:hover:not(:has(input:checked)) {
+    border-color: $color-accent;
+    background: rgba($color-accent-soft, 0.4);
+  }
+}
+
+.hv-contact__form-foot {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
+
+  @include respond-to(sm) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hv-contact__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: $font-mono;
+    font-size: 0.54rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $color-text-light;
+
+    svg { color: $color-primary; }
+  }
+}
+
+.hv-contact__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: $color-accent;
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius-pill;
+  font-family: $font-primary;
+  font-size: 0.88rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  transition: all $transition-elegant;
+  box-shadow: 0 10px 24px -10px rgba($color-accent, 0.5);
+  flex-shrink: 0;
+
+  svg { transition: transform $transition-elegant; }
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px -10px rgba($color-accent, 0.6);
+    svg { transform: translateX(4px); }
+  }
+}
+
+// ── Success state ──
+.hv-contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-lg 0;
+}
+
+.hv-contact__success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-white;
+  box-shadow:
+    0 14px 28px -10px rgba($color-accent, 0.55),
+    inset 0 1px 0 rgba($color-white, 0.3);
+}
+
+.hv-contact__success-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $color-text-ink;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-contact__success-body {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $color-text-medium;
+  max-width: 520px;
+
+  a {
+    color: $color-accent-dark;
+    font-weight: $font-weight-semibold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.hv-contact__success-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba($color-accent, 0.1);
+  border: 1px solid rgba($color-accent, 0.28);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-accent-dark;
+
+  svg { color: $color-accent-dark; }
+}
+
+// ============================================================
+// SIDE PANEL — Next steps + Office
+// ============================================================
+
+.hv-contact__steps-wrap { margin-bottom: $spacing-xl; }
+
+.hv-contact__steps-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    margin-right: 10px;
+    background: $color-accent-light;
+    opacity: 0.85;
+  }
+}
+
+.hv-contact__steps {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-md 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hv-contact__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding-left: 0;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 44px;
+    bottom: -$spacing-md;
+    width: 1px;
+    background: linear-gradient(180deg, rgba($color-accent-light, 0.5) 0%, rgba($color-white, 0.1) 100%);
+  }
+}
+
+.hv-contact__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-white;
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 0.92rem;
+  letter-spacing: -0.005em;
+  box-shadow: 0 8px 18px -8px rgba($color-accent, 0.55);
+  flex-shrink: 0;
+  z-index: 1;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-contact__step-body { display: flex; flex-direction: column; gap: 3px; padding-top: 2px; }
+
+.hv-contact__step-time {
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+}
+
+.hv-contact__step-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.02rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: $color-white;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-contact__step-detail {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba($color-white, 0.7);
+}
+
+// ── Office info ──
+.hv-contact__office {
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba($color-white, 0.15);
+}
+
+.hv-contact__office-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  background: rgba($color-white, 0.08);
+  border: 1px solid rgba($color-white, 0.16);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.56rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.9);
+  align-self: flex-start;
+  margin-bottom: $spacing-sm;
+
+  svg { color: $color-accent-light; }
+}
+
+.hv-contact__office-address {
+  display: block;
+  margin: 0 0 $spacing-md;
+  font-family: $font-primary;
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba($color-white, 0.85);
+
+  strong {
+    display: block;
+    font-family: $font-heading;
+    font-weight: $font-weight-regular;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: $color-white;
+    margin-bottom: 4px;
+    font-variation-settings: 'opsz' 144;
+  }
+}
+
+.hv-contact__office-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0;
+
+  @include respond-to(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+
+  > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+  dt {
+    font-family: $font-mono;
+    font-size: 0.52rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-accent-light;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-primary;
+    font-size: 0.82rem;
+    color: $color-white;
+    line-height: 1.35;
+    word-break: break-word;
+
+    a {
+      color: $color-white;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba($color-white, 0.35);
+      transition: border-color 0.3s ease;
+
+      &:hover { border-color: $color-accent-light; color: $color-accent-light; }
+    }
+  }
+}
+
+// ============================================================
+// Reduced motion
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-contact *,
+  .hv-contact *::before,
+  .hv-contact *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

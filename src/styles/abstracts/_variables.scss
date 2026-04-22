@@ -1,0 +1,116 @@
+// ============================================================
+// VARIABLES — Haven Home Health · Clinical Blue · Trust 2026
+// ============================================================
+
+// --- Brand Palette ---
+// Primary blue — clinical trust, medical-grade calm
+$color-primary:       #1C5AA6;   // deep clinical blue
+$color-primary-dark:  #133F76;   // navy ink
+$color-primary-deep:  #0B2B56;   // near-black ink blue
+$color-primary-light: #4A86D4;   // bright sky
+$color-primary-soft:  #D8E6F7;   // infant soft
+$color-primary-mist:  #EEF4FC;   // ambient wash
+
+// Accent orange — warmth, care, attention
+$color-accent:        #F18A4C;   // warm coral orange
+$color-accent-dark:   #D46B2F;   // burnt terracotta
+$color-accent-light:  #FBB487;   // peach
+$color-accent-soft:   #FCE5D2;   // cream peach wash
+
+// Supporting
+$color-sage:          #9FC2B7;   // healing pale green (accent-2)
+$color-gold:          #C9A15B;   // trust token gold
+$color-rose:          #F2C8C0;   // warmth wash
+
+// Neutrals
+$color-white:         #FFFFFF;
+$color-off-white:     #FAFBFD;   // page wash
+$color-cream:         #F7F5F1;   // warm paper
+$color-cream-warm:    #FBF7F1;   // heightened warmth
+
+// Text
+$color-text-ink:      #0B2B56;   // headings (primary-deep)
+$color-text-dark:     #18304F;
+$color-text-medium:   #46607D;
+$color-text-light:    #7A8CA3;
+$color-text-muted:    #A6B3C4;
+
+// Borders
+$color-border:        rgba(#0B2B56, 0.08);
+$color-border-strong: rgba(#0B2B56, 0.15);
+$color-border-accent: rgba(#F18A4C, 0.35);
+
+// --- Typography ---
+// Fraunces — editorial serif with high finesse (headings)
+// Inter — clean sans, excellent at all sizes (body)
+// JetBrains Mono — technical/credentials (labels)
+$font-heading: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono:    'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+$font-size-sm:   0.875rem;
+$font-size-base: 1rem;
+$font-size-3xl:  2.5rem;
+
+$font-weight-light:    300;
+$font-weight-regular:  400;
+$font-weight-medium:   500;
+$font-weight-semibold: 600;
+$font-weight-bold:     700;
+
+$line-height-tight:  1.05;
+$line-height-normal: 1.6;
+
+// --- Spacing scale ---
+$spacing-xs:  0.5rem;
+$spacing-sm:  0.75rem;
+$spacing-md:  1rem;
+$spacing-lg:  1.5rem;
+$spacing-xl:  2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
+$spacing-4xl: 6rem;
+$spacing-5xl: 8rem;
+
+// --- Layout ---
+$container-max-width: 1400px;
+$container-padding:   $spacing-lg;
+
+// --- Radii ---
+$border-radius-sm:   4px;
+$border-radius-md:   8px;
+$border-radius-lg:   14px;
+$border-radius-xl:   20px;
+$border-radius-pill: 100px;
+
+// --- Shadows (soft, clinical) ---
+$shadow-xs: 0 1px 2px rgba($color-primary-deep, 0.04);
+$shadow-sm: 0 2px 8px rgba($color-primary-deep, 0.06);
+$shadow-md: 0 10px 24px -8px rgba($color-primary-deep, 0.1);
+$shadow-lg: 0 24px 50px -20px rgba($color-primary-deep, 0.18);
+$shadow-xl: 0 40px 80px -30px rgba($color-primary-deep, 0.22);
+
+// Glow
+$shadow-glow-primary: 0 0 40px rgba($color-primary, 0.15);
+$shadow-glow-accent:  0 0 40px rgba($color-accent, 0.18);
+
+// --- Transitions ---
+$transition-base:    300ms ease;
+$transition-elegant: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+// --- Z-index ---
+$z-index-header: 300;
+$z-index-modal:  500;
+
+// --- Breakpoints ---
+$breakpoint-sm:  576px;
+$breakpoint-md:  768px;
+$breakpoint-lg:  992px;
+$breakpoint-xl:  1200px;
+$breakpoint-2xl: 1400px;
+
+// --- Gradients ---
+$gradient-primary:     linear-gradient(135deg, $color-primary-light, $color-primary);
+$gradient-warm:        linear-gradient(135deg, $color-accent, $color-accent-dark);
+$gradient-page:        linear-gradient(180deg, $color-white 0%, $color-off-white 100%);
+$gradient-trust:       linear-gradient(110deg, $color-primary 0%, $color-primary-light 50%, $color-accent 100%);

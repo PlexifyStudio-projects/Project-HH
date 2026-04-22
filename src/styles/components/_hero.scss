@@ -1,0 +1,1105 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// HERO — Haven Home Health · 2026 Editorial
+// Glassmorphic bento · 3D care crystal · animated gradients
+// ============================================================
+
+.hv-hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 720px;
+  padding-top: 170px;
+  padding-bottom: 40px;
+  overflow: hidden;
+  isolation: isolate;
+  background: $color-off-white;
+  color: $color-text-ink;
+  display: flex;
+  align-items: center;
+
+  @include respond-to(md) { padding-top: 180px; padding-bottom: 48px; }
+
+  @media (max-width: 899px) {
+    height: auto;
+    min-height: 100dvh;
+    padding-top: 124px;
+    padding-bottom: 40px;
+  }
+
+  @media (max-width: 720px) {
+    min-height: 0;
+    padding-top: 100px;
+    padding-bottom: 32px;
+  }
+
+  @media (max-width: 420px) {
+    padding-top: 92px;
+  }
+
+  .sr-only { @include visually-hidden; }
+}
+
+// ── Atmosphere / background ──
+.hv-hero__atm {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hv-hero__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 25% 15%, rgba($color-primary, 0.06), transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba($color-accent, 0.08), transparent 45%);
+}
+
+.hv-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.65;
+
+  &--1 {
+    width: 520px; height: 520px;
+    top: -12%; right: -6%;
+    background: radial-gradient(circle, rgba($color-primary-light, 0.55), transparent 60%);
+    animation: hv-blob 18s ease-in-out infinite;
+  }
+  &--2 {
+    width: 440px; height: 440px;
+    bottom: -10%; left: -8%;
+    background: radial-gradient(circle, rgba($color-accent, 0.35), transparent 60%);
+    animation: hv-blob 22s ease-in-out infinite reverse;
+  }
+  &--3 {
+    display: none;
+    @include respond-to(md) {
+      display: block;
+      width: 360px; height: 360px;
+      top: 35%; left: 45%;
+      background: radial-gradient(circle, rgba($color-sage, 0.35), transparent 60%);
+      animation: hv-blob 16s ease-in-out infinite 3s;
+    }
+  }
+}
+
+@keyframes hv-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -25px) scale(1.08); }
+  66%      { transform: translate(-20px, 20px) scale(0.94); }
+}
+
+// ── Wrap ──
+.hv-hero__wrap {
+  position: relative;
+  z-index: 2;
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  align-items: center;
+
+  @include respond-to(md) { gap: $spacing-2xl; }
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: $spacing-2xl;
+  }
+
+  @include respond-to(xl) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.32fr);
+    gap: $spacing-3xl;
+  }
+}
+
+// ── Content column ──
+.hv-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.hv-hero__letter {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: 50% 100%;
+}
+
+// Eyebrow
+.hv-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 16px;
+  background: rgba($color-white, 0.92);
+  border: 1px solid rgba($color-primary, 0.18);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+  align-self: flex-start;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 6px 18px -10px rgba($color-primary-deep, 0.3),
+    inset 0 1px 0 rgba($color-white, 0.9);
+
+  @media (max-width: 420px) {
+    font-size: 0.66rem;
+    padding: 7px 13px;
+    letter-spacing: 0.14em;
+  }
+
+  svg { color: $color-accent; flex-shrink: 0; }
+}
+
+.hv-hero__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 10px rgba($color-accent, 0.55);
+  animation: hv-pulse 2s ease-in-out infinite;
+}
+
+// Title
+.hv-hero__title {
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(2rem, 5.6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: $color-text-ink;
+  margin: $spacing-xs 0 $spacing-sm;
+  font-variation-settings: 'opsz' 144;
+
+  @include respond-to(md) { line-height: 1.02; }
+}
+
+.hv-hero__title-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.04em 0.02em;
+}
+
+.hv-hero__title-accent {
+  display: inline-block;
+  font-style: italic;
+  background: linear-gradient(110deg, $color-accent 0%, $color-accent-dark 50%, $color-primary 100%);
+  background-size: 220% 220%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hv-shimmer 6s ease-in-out infinite;
+
+  .hv-hero__letter {
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Subtitle + bullets
+.hv-hero__sub {
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $color-text-medium;
+  max-width: 520px;
+  margin: 0 0 $spacing-xs;
+
+  @include respond-to(md) { font-size: 1rem; }
+}
+
+.hv-hero__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 2px 0 $spacing-sm;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-primary;
+    font-size: 0.82rem;
+    color: $color-text-dark;
+
+    svg {
+      flex-shrink: 0;
+      width: 16px !important;
+      height: 16px !important;
+      color: $color-primary;
+    }
+  }
+}
+
+// CTAs
+.hv-hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  margin: $spacing-xs 0 $spacing-sm;
+
+  @include respond-to(sm) { flex-direction: row; gap: $spacing-sm; }
+}
+
+.hv-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 24px;
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.02em;
+  border-radius: $border-radius-pill;
+  text-decoration: none;
+  transition: all $transition-elegant;
+  position: relative;
+  overflow: hidden;
+
+  svg { flex-shrink: 0; transition: transform $transition-elegant; }
+
+  &--primary {
+    background: $color-accent;
+    color: $color-white;
+    box-shadow: 0 10px 30px -10px rgba($color-accent, 0.55);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, $color-accent-light 0%, $color-accent 50%, $color-accent-dark 100%);
+      opacity: 0;
+      transition: opacity $transition-base;
+      z-index: 0;
+    }
+
+    > * { position: relative; z-index: 1; }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px -12px rgba($color-accent, 0.65);
+      &::before { opacity: 1; }
+      .hv-hero__cta-arrow { transform: translateX(4px); }
+    }
+  }
+
+  &--ghost {
+    background: rgba($color-white, 0.7);
+    border: 1px solid $color-border-strong;
+    color: $color-primary-deep;
+    backdrop-filter: blur(10px);
+
+    svg { color: $color-primary; }
+
+    &:hover {
+      border-color: $color-primary;
+      background: $color-primary-mist;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Trust row
+.hv-hero__trust {
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-border;
+}
+
+.hv-hero__trust-label {
+  display: none;
+}
+
+.hv-hero__trust-line {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.hv-hero__trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hv-hero__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba($color-white, 0.75);
+  border: 1px solid $color-border;
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+  font-weight: $font-weight-medium;
+
+  svg { color: $color-accent; }
+}
+
+// Stats
+.hv-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-sm $spacing-xs;
+  margin-top: $spacing-sm;
+
+  @media (max-width: 380px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.hv-hero__stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  dt {
+    font-family: $font-heading;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: $font-weight-regular;
+    color: $color-primary-deep;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  dd {
+    font-family: $font-primary;
+    font-size: 0.66rem;
+    color: $color-text-light;
+    margin: 0;
+    line-height: 1.25;
+  }
+}
+
+.hv-hero__stat-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+
+  svg { width: 15px; height: 15px; }
+}
+
+// ============================================================
+// STAGE — 3D bento
+// ============================================================
+
+.hv-hero__stage {
+  position: relative;
+  aspect-ratio: 1 / 1.1;
+  max-height: calc(100vh - 220px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: $color-primary-deep;
+  box-shadow:
+    $shadow-xl,
+    inset 0 1px 0 rgba($color-white, 0.18);
+
+  @media (max-width: 899px) {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+    min-height: 360px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 560px) {
+    aspect-ratio: 3 / 4;
+    min-height: 420px;
+    border-radius: 18px;
+  }
+}
+
+// ── Scene slot (therapy video) ──
+.hv-hero__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+
+  &.is-active { opacity: 1; }
+
+  &-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) contrast(1.04) brightness(0.88);
+  }
+}
+
+// Scene caption (rotates with the video)
+.hv-hero__scene-caption {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: grid;
+
+  &-item {
+    grid-area: 1 / 1;
+    padding: 7px 16px;
+    border: 1px solid rgba($color-white, 0.28);
+    border-radius: $border-radius-pill;
+    background: rgba($color-primary-deep, 0.48);
+    backdrop-filter: blur(14px);
+    font-family: $font-mono;
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: $color-white;
+    font-weight: $font-weight-medium;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    pointer-events: none;
+    white-space: nowrap;
+
+    &.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.hv-hero__stage-progress {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  gap: 8px;
+  z-index: 4;
+  padding: 7px 12px;
+  background: rgba($color-primary-deep, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba($color-white, 0.25);
+  border-radius: $border-radius-pill;
+}
+
+.hv-hero__stage-dot {
+  display: block;
+  width: 22px;
+  height: 3px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: rgba($color-white, 0.35);
+  transition: all $transition-elegant;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  &:hover { background: rgba($color-white, 0.55); }
+
+  &.is-active {
+    background: rgba($color-white, 0.2);
+    width: 36px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: $color-accent;
+      transform-origin: left center;
+      animation: hv-progress 8s linear forwards;
+    }
+  }
+}
+
+@keyframes hv-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.hv-hero__stage-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba($color-primary-deep, 0.28) 0%, rgba($color-primary-deep, 0.72) 80%),
+    linear-gradient(160deg, rgba(#0E2B57, 0.5) 0%, rgba($color-primary, 0.25) 50%, rgba($color-accent-dark, 0.35) 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba($color-white, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 90% 90%, rgba($color-white, 0.04) 1px, transparent 1px);
+    background-size: 90px 90px;
+    opacity: 0.45;
+  }
+}
+
+.hv-hero__stage-fallback {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba($color-accent, 0.25), transparent 60%);
+}
+
+// ============================================================
+// Medical signature — pulse rings + heart + ECG line
+// ============================================================
+
+.hv-hero__stage-center {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+// Expanding pulse rings (emanating from heart)
+.hv-hero__pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin-left: -60px;
+  margin-top: -60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba($color-accent-light, 0.7);
+  opacity: 0;
+  animation: hv-ring 3s ease-out infinite;
+
+  &--2 { animation-delay: 1s; border-color: rgba($color-white, 0.55); }
+  &--3 { animation-delay: 2s; border-color: rgba($color-accent, 0.45); }
+}
+
+@keyframes hv-ring {
+  0%   { transform: scale(0.5); opacity: 0.8; }
+  60%  { opacity: 0.3; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+// Central heart badge
+.hv-hero__pulse-core {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba($color-white, 0.98) 0%, rgba($color-white, 0.9) 60%, rgba($color-white, 0.75) 100%);
+  box-shadow:
+    0 0 0 1px rgba($color-white, 0.6),
+    0 20px 50px -10px rgba($color-accent, 0.55),
+    0 0 80px rgba($color-accent, 0.35),
+    inset 0 2px 0 rgba($color-white, 0.9);
+  animation: hv-core 2.1s ease-in-out infinite;
+
+  &-inner {
+    position: relative;
+    z-index: 2;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+    color: $color-white;
+    box-shadow:
+      0 10px 24px -6px rgba($color-accent-dark, 0.65),
+      inset 0 1px 0 rgba($color-white, 0.4);
+
+    svg { filter: drop-shadow(0 2px 4px rgba(#000, 0.2)); }
+  }
+
+  &-orbit {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px dashed rgba($color-white, 0.5);
+    animation: hv-spin 18s linear infinite;
+  }
+}
+
+@keyframes hv-core {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+@keyframes hv-spin {
+  to { transform: rotate(360deg); }
+}
+
+// ECG line (wraps behind the heart)
+.hv-hero__ecg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 80px;
+  width: 100%;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  pointer-events: none;
+
+  &-path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: hv-ecg 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba($color-accent, 0.65));
+  }
+}
+
+@keyframes hv-ecg {
+  0%   { stroke-dashoffset: 2000; }
+  70%  { stroke-dashoffset: 0;    }
+  100% { stroke-dashoffset: -2000; }
+}
+
+// Ambient floating dots
+.hv-hero__ambient {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: $color-white;
+  opacity: 0;
+  animation: hv-amb 6s ease-in-out infinite;
+
+  &--1 { top: 18%; left: 20%; animation-delay: 0s; }
+  &--2 { top: 32%; right: 22%; animation-delay: 1.5s; background: $color-accent-light; }
+  &--3 { bottom: 28%; left: 28%; animation-delay: 3s; }
+  &--4 { bottom: 22%; right: 28%; animation-delay: 4.5s; background: $color-accent-light; }
+}
+
+@keyframes hv-amb {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50%      { opacity: 0.9; transform: translateY(-10px) scale(1); }
+}
+
+// Time tag
+.hv-hero__stage-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid rgba($color-white, 0.2);
+  border-radius: $border-radius-pill;
+  background: rgba($color-primary-deep, 0.45);
+  backdrop-filter: blur(14px);
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.88);
+
+  svg { color: $color-accent-light; }
+}
+
+.hv-hero__stage-top {
+  position: absolute;
+  inset: 14px 14px auto 14px;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px $spacing-sm;
+  pointer-events: none;
+
+  @include respond-to(md) { inset: 24px 24px auto 24px; }
+
+  @media (max-width: 420px) {
+    .hv-hero__stage-time { display: none; }
+  }
+}
+
+.hv-hero__stage-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid rgba($color-white, 0.3);
+  border-radius: $border-radius-pill;
+  background: rgba($color-primary-deep, 0.55);
+  backdrop-filter: blur(14px) saturate(1.2);
+  font-family: $font-mono;
+  font-size: 0.54rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $color-white;
+}
+
+.hv-hero__stage-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: $color-accent-light;
+  box-shadow: 0 0 10px rgba($color-accent, 0.7);
+  animation: hv-pulse 2s ease-in-out infinite;
+}
+
+.hv-hero__stage-tag-label {
+  font-weight: $font-weight-medium;
+  color: rgba($color-white, 0.95);
+}
+
+.hv-hero__stage-tag-sep {
+  opacity: 0.5;
+  margin: 0 -2px;
+}
+
+.hv-hero__stage-tag-caption {
+  position: relative;
+  display: inline-grid;
+  min-width: 0;
+}
+
+.hv-hero__stage-tag-item {
+  grid-area: 1 / 1;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  white-space: nowrap;
+  color: rgba($color-white, 0.92);
+
+  &.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================================
+// Social proof — caregiver avatar stack (left column "life")
+// ============================================================
+
+.hv-hero__social {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 2px 0 $spacing-xs;
+  padding: 7px 14px 7px 7px;
+  background: linear-gradient(
+    100deg,
+    rgba($color-white, 0.85) 0%,
+    rgba($color-primary-mist, 0.75) 100%
+  );
+  border: 1px solid rgba($color-primary, 0.12);
+  border-radius: $border-radius-pill;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 10px 24px -14px rgba($color-primary-deep, 0.25),
+    inset 0 1px 0 rgba($color-white, 0.9);
+  align-self: flex-start;
+  max-width: 100%;
+
+  @media (max-width: 420px) {
+    border-radius: 20px;
+    padding: 8px 12px 8px 8px;
+  }
+}
+
+.hv-hero__avatars {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  > * + * { margin-left: -10px; }
+}
+
+.hv-hero__avatars-img {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: $color-primary-mist;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid $color-white;
+  box-shadow: 0 2px 6px rgba($color-primary-deep, 0.18);
+  position: relative;
+  z-index: 1;
+
+  &:nth-child(2) { z-index: 2; }
+  &:nth-child(3) { z-index: 3; }
+}
+
+.hv-hero__avatars-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-white;
+  border: 2px solid $color-white;
+  font-family: $font-mono;
+  font-size: 0.52rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  box-shadow: 0 3px 8px rgba($color-accent-dark, 0.4);
+  position: relative;
+  z-index: 4;
+}
+
+.hv-hero__social-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  line-height: 1.25;
+  color: $color-text-medium;
+  min-width: 0;
+  flex: 1 1 auto;
+
+  @include respond-to(sm) { font-size: 0.74rem; }
+
+  strong {
+    color: $color-primary-deep;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.hv-hero__social-stars {
+  display: inline-flex;
+  gap: 1px;
+  color: $color-accent;
+  line-height: 0;
+}
+
+.hv-hero__stage-legend {
+  display: none;
+
+  @include respond-to(md) {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px;
+    border: 1px solid rgba($color-white, 0.2);
+    border-radius: $border-radius-pill;
+    background: rgba($color-primary-deep, 0.45);
+    backdrop-filter: blur(14px);
+    font-family: $font-mono;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba($color-white, 0.85);
+  }
+}
+
+.hv-hero__stage-legend-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  box-shadow: 0 0 8px currentColor;
+}
+
+// Floating cards over the 3D
+.hv-hero__float-card {
+  position: absolute;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: rgba($color-white, 0.96);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba($color-white, 0.4);
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  max-width: calc(100% - 28px);
+
+  @include respond-to(md) { padding: 12px 16px; }
+
+  strong {
+    display: block;
+    font-family: $font-heading;
+    font-size: 0.88rem;
+    font-weight: $font-weight-regular;
+    color: $color-text-ink;
+    line-height: 1.1;
+
+    @include respond-to(md) { font-size: 0.95rem; }
+  }
+
+  span {
+    display: block;
+    margin-top: 2px;
+    font-family: $font-mono;
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-text-light;
+
+    @include respond-to(md) { font-size: 0.54rem; letter-spacing: 0.18em; }
+  }
+
+  &--1 {
+    bottom: 16px;
+    left: 14px;
+    right: auto;
+
+    @include respond-to(md) { bottom: 28px; left: 28px; }
+  }
+
+  &--2 {
+    top: 64px;
+    right: 14px;
+    flex-direction: row-reverse;
+    text-align: right;
+
+    @include respond-to(md) { top: 80px; right: 28px; }
+
+    @media (max-width: 560px) { display: none; }
+  }
+
+  &--3 {
+    bottom: 76px;
+    right: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 12px;
+
+    @include respond-to(md) { bottom: 100px; right: 28px; padding: 12px 14px; }
+  }
+}
+
+.hv-hero__float-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: $color-primary-mist;
+  color: $color-primary;
+
+  &--accent {
+    background: $color-accent-soft;
+    color: $color-accent-dark;
+  }
+}
+
+.hv-hero__rating-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: $color-accent;
+  margin-bottom: 2px;
+}
+
+// ── Bottom ticker marquee ──
+.hv-hero__ticker {
+  position: relative;
+  z-index: 3;
+  margin-top: $spacing-2xl;
+  padding: 14px 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  background: rgba($color-white, 0.7);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  &-track {
+    display: flex;
+    width: max-content;
+    animation: hv-marquee 40s linear infinite;
+  }
+
+  &-group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    padding-right: $spacing-xl;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: $font-primary;
+      font-size: 0.82rem;
+      font-weight: $font-weight-medium;
+      color: $color-text-dark;
+      white-space: nowrap;
+
+      svg { color: $color-accent; }
+    }
+  }
+
+  &-dot {
+    color: $color-primary !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+// ============================================================
+// Keyframes
+// ============================================================
+
+@keyframes hv-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+@keyframes hv-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes hv-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+// ============================================================
+// Reduced motion
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-hero *,
+  .hv-hero *::before,
+  .hv-hero *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

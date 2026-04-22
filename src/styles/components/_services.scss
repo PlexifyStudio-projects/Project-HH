@@ -1,0 +1,648 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// SERVICES — Haven Home Health · 2026/2027 Editorial
+// Per-service color psychology via CSS custom props:
+//   --tone · --tone-deep · --tone-wash
+// ============================================================
+
+.hv-services {
+  position: relative;
+  padding-block: $spacing-4xl;
+  background: $color-white;
+  color: $color-text-ink;
+  isolation: isolate;
+  overflow: hidden;
+
+  @include respond-to(md) { padding-block: $spacing-5xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 85% 0%, rgba($color-primary-mist, 0.8) 0%, transparent 45%),
+      radial-gradient(ellipse at 0% 100%, rgba($color-accent, 0.05) 0%, transparent 40%);
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 2;
+    @include container;
+  }
+}
+
+// ============================================================
+// HEAD
+// ============================================================
+
+.hv-services__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  max-width: 820px;
+  margin: 0 auto $spacing-2xl;
+  text-align: left;
+
+  @include respond-to(md) {
+    align-items: center;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+}
+
+.hv-services__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: rgba($color-primary-mist, 0.9);
+  border: 1px solid rgba($color-primary, 0.16);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-primary-deep;
+
+  svg { color: $color-accent; flex-shrink: 0; }
+}
+
+.hv-services__eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 10px rgba($color-accent, 0.55);
+  animation: hv-svcs-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hv-svcs-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+.hv-services__title {
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(1.9rem, 4.5vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  color: $color-text-ink;
+  margin: 0;
+  font-variation-settings: 'opsz' 144;
+
+  em {
+    font-style: italic;
+    background: linear-gradient(110deg, $color-accent 0%, $color-accent-dark 60%, $color-primary 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hv-services__title-line { display: block; padding: 0.02em 0.02em; }
+
+.hv-services__sub {
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $color-text-medium;
+  max-width: 620px;
+  margin: 0;
+
+  @include respond-to(md) { font-size: 1rem; }
+}
+
+// ============================================================
+// GRID
+// ============================================================
+
+.hv-services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  padding: 0;
+  margin: 0 0 $spacing-2xl;
+  list-style: none;
+
+  @include respond-to(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 980px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $spacing-lg;
+  }
+}
+
+// ============================================================
+// CARD — Editorial 2026/2027
+// ============================================================
+
+.hv-services__card {
+  // tone fallbacks (overridden by inline style per service)
+  --tone: #{$color-primary};
+  --tone-deep: #{$color-primary-deep};
+  --tone-wash: #{$color-primary-mist};
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-lg $spacing-lg $spacing-md;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba($color-primary-deep, 0.02);
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+  overflow: hidden;
+  isolation: isolate;
+
+  @include respond-to(md) {
+    padding: $spacing-xl $spacing-xl $spacing-lg;
+    gap: $spacing-md;
+  }
+
+  // Top sweep bar — picks up the tone
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--tone) 0%,
+      var(--tone-deep) 60%,
+      var(--tone) 100%
+    );
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  // Radial glow that reveals on hover (tone-tinted)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 80% 0%,
+      rgba(0, 0, 0, 0.04) 0%,
+      transparent 55%
+    );
+    background-image: radial-gradient(
+      circle at 80% 0%,
+      var(--tone-wash) 0%,
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.55s ease;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--tone) 30%, transparent);
+    box-shadow:
+      0 24px 60px -24px color-mix(in srgb, var(--tone-deep) 35%, transparent),
+      0 6px 16px -6px rgba($color-primary-deep, 0.08);
+
+    &::before { transform: scaleX(1); }
+    &::after  { opacity: 1; }
+
+    .hv-services__card-watermark { opacity: 0.12; transform: translate(6px, -6px); }
+    .hv-services__card-mesh      { opacity: 0.9; }
+
+    .hv-services__card-icon-halo {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    .hv-services__card-icon-inner {
+      background: linear-gradient(135deg, var(--tone) 0%, var(--tone-deep) 100%);
+      color: $color-white;
+      transform: rotate(-5deg);
+      box-shadow:
+        0 14px 28px -8px color-mix(in srgb, var(--tone) 45%, transparent),
+        inset 0 1px 0 rgba($color-white, 0.35);
+    }
+
+    .hv-services__card-name {
+      color: var(--tone-deep);
+      font-variation-settings: 'opsz' 144, 'wght' 450;
+    }
+
+    .hv-services__card-cta {
+      color: var(--tone-deep);
+      svg { transform: translate(4px, -4px); }
+    }
+  }
+
+  // Featured: gradient conic border + slight tone wash background
+  &.is-featured {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--tone-wash) 70%, transparent) 0%, $color-white 60%);
+
+    &::before {
+      height: 4px;
+      transform: scaleX(1);
+    }
+
+    // Gradient ring outside the border via layered box-shadow
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--tone) 30%, transparent),
+      0 12px 32px -16px color-mix(in srgb, var(--tone-deep) 30%, transparent);
+
+    .hv-services__card-icon-inner {
+      background: linear-gradient(135deg, var(--tone) 0%, var(--tone-deep) 100%);
+      color: $color-white;
+      border-color: transparent;
+      box-shadow:
+        0 14px 28px -10px color-mix(in srgb, var(--tone) 50%, transparent),
+        inset 0 1px 0 rgba($color-white, 0.35);
+    }
+
+    .hv-services__card-icon-halo { opacity: 0.7; }
+  }
+}
+
+// ── Decorative mesh pattern (faint dot grid) ──
+.hv-services__card-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--tone) 28%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  background-position: 0 0;
+  mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 55%);
+  -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 55%);
+  opacity: 0.35;
+  transition: opacity 0.7s ease;
+}
+
+// ── Big watermark index number ──
+.hv-services__card-watermark {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  z-index: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-style: italic;
+  font-size: clamp(7rem, 10vw, 11rem);
+  line-height: 1;
+  color: var(--tone);
+  opacity: 0.07;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  font-variation-settings: 'opsz' 144;
+}
+
+// ── Top row ──
+.hv-services__card-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: 2px;
+}
+
+.hv-services__card-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tone-deep);
+}
+
+.hv-services__card-num-line {
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--tone);
+  opacity: 0.5;
+}
+
+.hv-services__card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba($color-accent, 0.12);
+  border: 1px solid rgba($color-accent, 0.35);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.52rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-accent-dark;
+}
+
+.hv-services__card-badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 8px rgba($color-accent, 0.6);
+  animation: hv-svcs-pulse 2.2s ease-in-out infinite;
+}
+
+// ── Icon with halo ──
+.hv-services__card-icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-top: 6px;
+  isolation: isolate;
+}
+
+.hv-services__card-icon-halo {
+  position: absolute;
+  inset: -14px;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--tone) 28%, transparent) 0%,
+    transparent 65%
+  );
+  opacity: 0.55;
+  transition: opacity 0.55s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hv-services__card-icon-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--tone-wash);
+  border: 1px solid color-mix(in srgb, var(--tone) 18%, transparent);
+  color: var(--tone-deep);
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.55s ease,
+    color 0.4s ease,
+    box-shadow 0.55s ease,
+    border-color 0.4s ease;
+
+  svg { width: 28px; height: 28px; }
+}
+
+// ── Title ──
+.hv-services__card-title {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.hv-services__card-name {
+  margin: 0;
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  font-weight: $font-weight-regular;
+  line-height: 1.15;
+  letter-spacing: -0.014em;
+  color: $color-text-ink;
+  transition: color 0.4s ease, font-variation-settings 0.55s ease;
+  font-variation-settings: 'opsz' 144, 'wght' 400;
+
+  @include respond-to(md) { font-size: 1.48rem; }
+}
+
+.hv-services__card-tag {
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.hv-services__card-body {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.89rem;
+  line-height: 1.55;
+  color: $color-text-medium;
+  flex: 1 1 auto;
+}
+
+// ── Outcomes pills ──
+.hv-services__card-outcomes {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    background: color-mix(in srgb, var(--tone-wash) 70%, $color-white);
+    border: 1px solid color-mix(in srgb, var(--tone) 14%, transparent);
+    border-radius: $border-radius-pill;
+    font-family: $font-primary;
+    font-size: 0.72rem;
+    font-weight: $font-weight-medium;
+    color: var(--tone-deep);
+    white-space: nowrap;
+    transition: background 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      background: color-mix(in srgb, var(--tone) 14%, $color-white);
+      border-color: color-mix(in srgb, var(--tone) 30%, transparent);
+    }
+  }
+}
+
+// ── Meta row: duration · frequency · coverage ──
+.hv-services__card-meta {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 4px 0 0;
+  padding-top: $spacing-sm;
+  border-top: 1px dashed color-mix(in srgb, var(--tone) 22%, transparent);
+
+  > div {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  dt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--tone-wash) 70%, $color-white);
+    color: var(--tone);
+    flex-shrink: 0;
+    margin: 0;
+
+    svg { width: 12px; height: 12px; }
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 0.62rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.04em;
+    color: $color-text-dark;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// ── CTA ──
+.hv-services__card-cta {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.005em;
+  color: var(--tone);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.4s ease;
+
+  svg { transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -$spacing-lg;
+  }
+}
+
+// ============================================================
+// FOOT
+// ============================================================
+
+.hv-services__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: linear-gradient(
+    100deg,
+    rgba($color-primary-mist, 0.7) 0%,
+    rgba($color-white, 0.9) 100%
+  );
+  border: 1px solid rgba($color-primary, 0.12);
+  border-radius: $border-radius-lg;
+
+  @media (min-width: 760px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-md $spacing-xl;
+  }
+}
+
+.hv-services__foot-trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-primary;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: $color-text-medium;
+
+  svg { color: $color-primary; flex-shrink: 0; }
+
+  strong {
+    color: $color-primary-deep;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.hv-services__foot-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: $color-primary-deep;
+  color: $color-white;
+  border-radius: $border-radius-pill;
+  font-family: $font-primary;
+  font-size: 0.84rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  flex-shrink: 0;
+  align-self: flex-start;
+  transition: all $transition-elegant;
+
+  @media (min-width: 760px) { align-self: center; }
+
+  svg { transition: transform $transition-elegant; }
+
+  &:hover {
+    background: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px rgba($color-primary-deep, 0.5);
+    svg { transform: translate(3px, -3px); }
+  }
+}
+
+// ============================================================
+// Reduced motion
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-services *,
+  .hv-services *::before,
+  .hv-services *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

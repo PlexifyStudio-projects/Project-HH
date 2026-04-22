@@ -1,0 +1,605 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// FOOTER — Haven Home Health · Pre-CTA + columns + accreditations
+// ============================================================
+
+.hv-ft {
+  position: relative;
+  color: $color-white;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+// ============================================================
+// PRE-FOOTER HERO — Big editorial CTA before the footer proper
+// ============================================================
+
+.hv-ft__hero {
+  position: relative;
+  padding-block: $spacing-4xl;
+  background:
+    linear-gradient(165deg, $color-primary-deep 0%, #0F3573 55%, $color-primary 100%);
+  isolation: isolate;
+  overflow: hidden;
+
+  @include respond-to(md) { padding-block: $spacing-5xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 12% 12%, rgba($color-white, 0.06) 1px, transparent 1px);
+    background-size: 90px 90px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -160px; top: -160px;
+    width: 520px; height: 520px;
+    z-index: 0;
+    background: radial-gradient(circle, rgba($color-accent, 0.35) 0%, transparent 65%);
+    filter: blur(55px);
+  }
+}
+
+.hv-ft__hero-wrap {
+  position: relative;
+  z-index: 2;
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  align-items: end;
+
+  @media (min-width: 960px) {
+    grid-template-columns: 1.4fr auto;
+    gap: $spacing-2xl;
+  }
+}
+
+.hv-ft__hero-main {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.hv-ft__hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: rgba($color-white, 0.1);
+  border: 1px solid rgba($color-white, 0.22);
+  border-radius: $border-radius-pill;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+  backdrop-filter: blur(10px);
+  align-self: flex-start;
+
+  svg { color: $color-accent-light; flex-shrink: 0; }
+}
+
+.hv-ft__hero-eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: $color-accent-light;
+  box-shadow: 0 0 10px rgba($color-accent, 0.6);
+  animation: hv-ft-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hv-ft-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+.hv-ft__hero-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: $font-weight-light;
+  font-size: clamp(2.3rem, 6vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  color: $color-white;
+  font-variation-settings: 'opsz' 144;
+
+  em {
+    font-style: italic;
+    background: linear-gradient(110deg, $color-accent-light 0%, $color-accent 50%, $color-accent-dark 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hv-ft__hero-line { display: block; padding: 0.02em; }
+
+.hv-ft__hero-sub {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba($color-white, 0.78);
+  max-width: 560px;
+
+  @include respond-to(md) { font-size: 1.05rem; }
+}
+
+.hv-ft__hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-top: 6px;
+}
+
+.hv-ft__hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: $border-radius-pill;
+  font-family: $font-primary;
+  font-size: 0.92rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  transition: all $transition-elegant;
+
+  svg { transition: transform $transition-elegant; }
+
+  &--primary {
+    background: $color-accent;
+    color: $color-white;
+    box-shadow:
+      0 14px 32px -10px rgba($color-accent, 0.6),
+      inset 0 1px 0 rgba($color-white, 0.25);
+
+    &:hover {
+      background: $color-accent-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -10px rgba($color-accent, 0.7);
+      svg { transform: translateX(4px); }
+    }
+  }
+
+  &--ghost {
+    background: rgba($color-white, 0.08);
+    border: 1px solid rgba($color-white, 0.22);
+    color: $color-white;
+    backdrop-filter: blur(12px);
+
+    &:hover {
+      background: rgba($color-white, 0.14);
+      border-color: $color-accent-light;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Hero aside — 3 stat blocks
+.hv-ft__hero-aside {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  background: rgba($color-white, 0.06);
+  border: 1px solid rgba($color-white, 0.14);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+
+  @media (min-width: 960px) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    min-width: 220px;
+  }
+}
+
+.hv-ft__hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  dt {
+    font-family: $font-heading;
+    font-weight: $font-weight-regular;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: $color-white;
+    margin: 0;
+    font-variation-settings: 'opsz' 144;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 0.54rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-accent-light;
+  }
+}
+
+// ============================================================
+// MAIN BODY
+// ============================================================
+
+.hv-ft__body {
+  position: relative;
+  padding-block: $spacing-3xl $spacing-xl;
+  background: $color-primary-deep;
+
+  @include respond-to(md) { padding-block: $spacing-4xl $spacing-2xl; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 90% 0%, rgba($color-accent, 0.07) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.6;
+  }
+}
+
+.hv-ft__body-wrap {
+  position: relative;
+  z-index: 2;
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @media (min-width: 1000px) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 2fr);
+    gap: $spacing-2xl;
+  }
+}
+
+// ── Brand card ──
+.hv-ft__brand-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.04);
+  border: 1px solid rgba($color-white, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.hv-ft__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+
+  &:hover { opacity: 0.85; }
+}
+
+.hv-ft__brand-mark {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px -4px rgba($color-primary, 0.45);
+  overflow: hidden;
+
+  svg { width: 100%; height: 100%; display: block; }
+}
+
+.hv-ft__brand-text { display: flex; flex-direction: column; gap: 3px; }
+
+.hv-ft__brand-name {
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-size: 1.3rem;
+  color: $color-white;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  font-variation-settings: 'opsz' 144;
+}
+
+.hv-ft__brand-tagline {
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+  line-height: 1.2;
+}
+
+.hv-ft__brand-body {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba($color-white, 0.7);
+}
+
+.hv-ft__brand-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba($color-white, 0.1);
+}
+
+.hv-ft__brand-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-primary;
+  font-size: 0.88rem;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+  text-decoration: none;
+  transition: color 0.25s ease;
+
+  svg { color: $color-accent-light; flex-shrink: 0; }
+
+  > span { display: flex; flex-direction: column; gap: 1px; line-height: 1.2; }
+
+  &:hover:not(.hv-ft__brand-contact-item--static) {
+    color: $color-accent-light;
+  }
+
+  &--static { cursor: default; }
+}
+
+.hv-ft__brand-contact-label {
+  font-family: $font-mono;
+  font-size: 0.5rem;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.5);
+}
+
+.hv-ft__socials {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba($color-white, 0.1);
+}
+
+.hv-ft__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba($color-white, 0.06);
+  border: 1px solid rgba($color-white, 0.14);
+  color: rgba($color-white, 0.8);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    background: $color-accent;
+    border-color: transparent;
+    color: $color-white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -6px rgba($color-accent, 0.5);
+  }
+}
+
+// ── Link columns ──
+.hv-ft__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-lg $spacing-md;
+
+  @include respond-to(sm) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.hv-ft__col-title {
+  margin: 0 0 $spacing-md;
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    margin-right: 8px;
+    background: $color-accent-light;
+    opacity: 0.8;
+    vertical-align: middle;
+  }
+}
+
+.hv-ft__col-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  a {
+    display: inline-block;
+    font-family: $font-primary;
+    font-size: 0.86rem;
+    color: rgba($color-white, 0.72);
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.3s ease;
+
+    &:hover {
+      color: $color-white;
+      transform: translateX(3px);
+    }
+  }
+}
+
+// ============================================================
+// ACCREDITATIONS STRIP
+// ============================================================
+
+.hv-ft__creds {
+  background: $color-primary-deep;
+  padding: $spacing-md 0;
+  border-top: 1px solid rgba($color-white, 0.1);
+}
+
+.hv-ft__creds-wrap {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  @media (min-width: 760px) {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+}
+
+.hv-ft__creds-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.56rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+  flex-shrink: 0;
+
+  svg { color: $color-accent-light; }
+
+  @media (min-width: 760px) {
+    padding-right: $spacing-md;
+    border-right: 1px solid rgba($color-white, 0.18);
+  }
+}
+
+.hv-ft__creds-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.hv-ft__cred {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: $font-primary;
+  font-size: 0.78rem;
+  font-weight: $font-weight-medium;
+  color: rgba($color-white, 0.85);
+}
+
+.hv-ft__cred-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba($color-accent, 0.18);
+  border: 1px solid rgba($color-accent-light, 0.35);
+  color: $color-accent-light;
+}
+
+// ============================================================
+// BOTTOM BAR
+// ============================================================
+
+.hv-ft__bottom {
+  background: #07224A;
+  padding: $spacing-md 0;
+  border-top: 1px solid rgba($color-white, 0.08);
+}
+
+.hv-ft__bottom-wrap {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-lg;
+  }
+}
+
+.hv-ft__bottom-left {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-family: $font-primary;
+  font-size: 0.76rem;
+  color: rgba($color-white, 0.55);
+}
+
+.hv-ft__copyright {
+  font-weight: $font-weight-medium;
+  color: rgba($color-white, 0.7);
+}
+
+.hv-ft__bottom-sep { color: rgba($color-white, 0.3); }
+
+.hv-ft__bottom-note { color: rgba($color-white, 0.55); }
+
+.hv-ft__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  a {
+    font-family: $font-primary;
+    font-size: 0.76rem;
+    color: rgba($color-white, 0.65);
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover { color: $color-white; }
+  }
+}
+
+// ============================================================
+// Reduced motion
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-ft *,
+  .hv-ft *::before,
+  .hv-ft *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
