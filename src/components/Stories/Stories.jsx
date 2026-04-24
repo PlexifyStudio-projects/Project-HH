@@ -63,7 +63,7 @@ const STORIES = [
   {
     id: 'david-r',
     quote:
-      'Dad wanted to stay home, and Haven made that possible with real dignity. Sarah walked us through every Medicare form step by step, so there were no surprises — just clear answers and steady care.',
+      'Dad wanted to stay in the home he built, surrounded by his records and his garden, and Haven made that possible with real dignity. Sarah guided us through every Medicare form with patience and warmth — clear answers, no surprises, and a team that always put my father first.',
     author: 'David R.',
     relation: 'Son · power of attorney',
     location: 'Austin, TX',
@@ -80,7 +80,7 @@ const STORIES = [
   {
     id: 'priya-s',
     quote:
-      'My grandmother feels most at ease in Hindi, so finding a caregiver who spoke her language mattered to us. Haven matched her with someone kind and fluent within two days — and you could see the comfort on her face from the very first visit.',
+      'My grandmother feels most at home speaking Hindi, so finding a caregiver who shared her language meant the world to us. Haven matched her with someone warm and fluent within two days, and watching the two of them share afternoon chai has brought my grandmother\'s smile right back.',
     author: 'Priya S.',
     relation: 'Granddaughter · coordinator',
     location: 'Jersey City, NJ',
@@ -97,7 +97,7 @@ const STORIES = [
   {
     id: 'angela-w',
     quote:
-      'The occupational therapist walked through every room with us and made thoughtful recommendations — a shower bench, grab bars, and a safer rug for the hallway. Michael feels steady on his feet again, and he is walking without his cane.',
+      'The occupational therapist walked through our home room by room and made the kindest, most thoughtful suggestions — a shower bench, grab bars, a softer rug for the hallway. Michael is steady on his feet again, walking confidently without his cane, and we both feel so grateful.',
     author: 'Angela W.',
     relation: 'Wife · primary caregiver',
     location: 'Phoenix, AZ',
@@ -114,7 +114,7 @@ const STORIES = [
   {
     id: 'james-t',
     quote:
-      'They send a thoughtful daily note through the app — what Mom ate, how she slept, what meds she took. I live three states away, and that little update every morning gives me such peace of mind. I finally feel connected to her day again.',
+      'Living three states away from Mom is never easy, but Haven sends a gentle daily note through the app — what she ate, how she slept, how her morning walk went. Those little updates have become the best part of my day, and I finally feel close to her again.',
     author: 'James T.',
     relation: 'Son · long-distance caregiver',
     location: 'Seattle, WA',
@@ -129,26 +129,9 @@ const STORIES = [
     avatar: AVATAR_URLS[7],
   },
   {
-    id: 'rosa-m',
-    quote:
-      'The wound on Dad\'s foot healed beautifully in just six weeks. Our Haven nurse was patient and generous with her knowledge — she taught me the right techniques and made me feel confident caring for him between visits.',
-    author: 'Rosa M.',
-    relation: 'Daughter · caregiver',
-    location: 'Miami, FL',
-    patient: 'Dad, 76',
-    condition: 'Diabetic wound care',
-    duration: '6 weeks',
-    startDate: 'Feb 2025',
-    services: ['Skilled Nursing'],
-    outcome: { value: '6 wks', label: 'Wound fully closed' },
-    rating: 5,
-    tone: 'plum',
-    avatar: AVATAR_URLS[0],
-  },
-  {
     id: 'tom-b',
     quote:
-      'My wife can climb the stairs again without stopping — a small thing that feels like a miracle. The respiratory therapist visits twice a week, brought us a portable pulse oximeter, and gently walked us through the numbers so we feel in control at home.',
+      'My wife is climbing our stairs again without stopping — and she smiles every time she reaches the top. Her respiratory therapist visits twice a week, brought us a portable pulse oximeter, and walked us through the readings with such patience. We finally feel calm and confident at home.',
     author: 'Tom B.',
     relation: 'Husband · caregiver',
     location: 'Pittsburgh, PA',
@@ -165,7 +148,7 @@ const STORIES = [
   {
     id: 'linda-o',
     quote:
-      'Haven cared for my father with so much tenderness in his final weeks — in his own bed, comfortable, with his grandchildren close by. They honored his wishes every step of the way, and I will always be grateful for the peace they gave our family.',
+      'Haven cared for my father in his final weeks with extraordinary tenderness — in his own bed, peaceful, with his grandchildren gathered close. They honored every one of his wishes, and the grace they gave our family in those last days is something we will always carry with us.',
     author: 'Linda O.',
     relation: 'Daughter',
     location: 'Denver, CO',
@@ -182,7 +165,7 @@ const STORIES = [
   {
     id: 'kevin-j',
     quote:
-      'Six weeks after my valve replacement I was walking a mile a day. My PT scaled everything up gradually — steady heart rate, no setbacks, and she celebrated every milestone with me. Recovering at home felt calm, supported, and deeply reassuring.',
+      'Six weeks after my valve replacement I was walking a full mile every day. My physical therapist paced every step of my recovery with real skill and encouragement — steady heart rate, no setbacks, and a quiet celebration at every milestone. Healing at home felt calm and deeply supported.',
     author: 'Kevin J.',
     relation: 'Patient',
     location: 'Chicago, IL',
@@ -197,26 +180,9 @@ const STORIES = [
     avatar: AVATAR_URLS[3],
   },
   {
-    id: 'nancy-w',
-    quote:
-      'The tremor is still there, but Mom feels steady on her feet again — and that is everything. At 79 she is still happily in her own home, with the right routine, the right medications, and a Haven team that truly cares about her.',
-    author: 'Nancy W.',
-    relation: 'Daughter',
-    location: 'Boston, MA',
-    patient: 'Mom, 79',
-    condition: 'Parkinson\'s disease',
-    duration: '9 months · ongoing',
-    startDate: 'Jul 2024',
-    services: ['Occupational Therapy', 'Skilled Nursing'],
-    outcome: { value: '0', label: 'Falls in 9 months' },
-    rating: 5,
-    tone: 'sage',
-    avatar: AVATAR_URLS[1],
-  },
-  {
     id: 'isabella-r',
     quote:
-      'Between chemo cycles, the Haven nurse kept a careful eye on Mom\'s counts and stayed in close touch with her oncologist whenever something needed attention. Their communication was seamless, and Mom felt cared for through every step of her treatment.',
+      'Between chemo cycles, our Haven nurse kept a careful eye on Mom\'s counts and stayed in constant, gentle touch with her oncologist. Her coordination was seamless and her kindness unwavering — Mom always knew she was never facing any of it alone.',
     author: 'Isabella R.',
     relation: 'Daughter',
     location: 'Albuquerque, NM',
@@ -229,40 +195,6 @@ const STORIES = [
     rating: 5,
     tone: 'amber',
     avatar: AVATAR_URLS[0],
-  },
-  {
-    id: 'patricia-k',
-    quote:
-      'Three weeks after surgery I was climbing stairs on my own. My PT arrived like clockwork, the same days every week — dependable, encouraging, and genuinely invested in my progress. Recovering at home was everything I hoped it would be.',
-    author: 'Patricia K.',
-    relation: 'Patient',
-    location: 'Portland, OR',
-    patient: 'Self, 68',
-    condition: 'Knee replacement',
-    duration: '8 weeks',
-    startDate: 'Mar 2025',
-    services: ['Physical Therapy', 'Occupational Therapy'],
-    outcome: { value: '3 wks', label: 'Stairs unassisted' },
-    rating: 5,
-    tone: 'mint',
-    avatar: AVATAR_URLS[5],
-  },
-  {
-    id: 'robert-c',
-    quote:
-      'For eighteen months, even simple daily tasks felt out of reach. My OT met me exactly where I was and helped me rebuild my routines one small, encouraging step at a time. I am working part-time again — and I feel like myself once more.',
-    author: 'Robert C.',
-    relation: 'Patient',
-    location: 'Nashville, TN',
-    patient: 'Self, 54',
-    condition: 'Long COVID recovery',
-    duration: '9 months',
-    startDate: 'Apr 2024',
-    services: ['Occupational Therapy', 'Speech Therapy'],
-    outcome: { value: 'Back to', label: 'part-time work' },
-    rating: 5,
-    tone: 'indigo',
-    avatar: AVATAR_URLS[2],
   },
 ];
 
