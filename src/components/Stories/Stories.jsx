@@ -63,7 +63,7 @@ const STORIES = [
   {
     id: 'david-r',
     quote:
-      'Dad refused a facility. Haven gave us a way to honor that. When Medicare paperwork got tangled, Sarah handled it — we never saw a bill we did not expect.',
+      'Dad wanted to stay home, and Haven made that possible with real dignity. Sarah walked us through every Medicare form step by step, so there were no surprises — just clear answers and steady care.',
     author: 'David R.',
     relation: 'Son · power of attorney',
     location: 'Austin, TX',
@@ -80,7 +80,7 @@ const STORIES = [
   {
     id: 'priya-s',
     quote:
-      'We needed someone who spoke Hindi to my grandmother. Haven matched us in two days. Two days. I had been trying for a month through our hospital discharge team.',
+      'My grandmother feels most at ease in Hindi, so finding a caregiver who spoke her language mattered to us. Haven matched her with someone kind and fluent within two days — and you could see the comfort on her face from the very first visit.',
     author: 'Priya S.',
     relation: 'Granddaughter · coordinator',
     location: 'Jersey City, NJ',
@@ -97,7 +97,7 @@ const STORIES = [
   {
     id: 'angela-w',
     quote:
-      'The occupational therapist walked through every room of our house. She ordered a shower bench, grab bars, and replaced a rug that was a fall waiting to happen. Michael walks without his cane now.',
+      'The occupational therapist walked through every room with us and made thoughtful recommendations — a shower bench, grab bars, and a safer rug for the hallway. Michael feels steady on his feet again, and he is walking without his cane.',
     author: 'Angela W.',
     relation: 'Wife · primary caregiver',
     location: 'Phoenix, AZ',
@@ -114,7 +114,7 @@ const STORIES = [
   {
     id: 'james-t',
     quote:
-      'They send a daily note through the app — what Mom ate, how she slept, what meds she took. I live three states away. For the first time in a year, I am not afraid of my phone ringing at 3 AM.',
+      'They send a thoughtful daily note through the app — what Mom ate, how she slept, what meds she took. I live three states away, and that little update every morning gives me such peace of mind. I finally feel connected to her day again.',
     author: 'James T.',
     relation: 'Son · long-distance caregiver',
     location: 'Seattle, WA',
@@ -131,7 +131,7 @@ const STORIES = [
   {
     id: 'rosa-m',
     quote:
-      'The wound on Dad\'s foot closed in six weeks. We had been dressing it ourselves for four months with no progress. The Haven nurse taught me things the hospital never did.',
+      'The wound on Dad\'s foot healed beautifully in just six weeks. Our Haven nurse was patient and generous with her knowledge — she taught me the right techniques and made me feel confident caring for him between visits.',
     author: 'Rosa M.',
     relation: 'Daughter · caregiver',
     location: 'Miami, FL',
@@ -148,7 +148,7 @@ const STORIES = [
   {
     id: 'tom-b',
     quote:
-      'My wife can climb the stairs without stopping. The respiratory therapist comes twice a week, brought a portable pulse oximeter, and showed us exactly what numbers to worry about.',
+      'My wife can climb the stairs again without stopping — a small thing that feels like a miracle. The respiratory therapist visits twice a week, brought us a portable pulse oximeter, and gently walked us through the numbers so we feel in control at home.',
     author: 'Tom B.',
     relation: 'Husband · caregiver',
     location: 'Pittsburgh, PA',
@@ -165,7 +165,7 @@ const STORIES = [
   {
     id: 'linda-o',
     quote:
-      'Haven walked my father out of this life the way he wanted — in his own bed, pain-managed, with his grandkids around him. I will never forget the dignity of those last weeks.',
+      'Haven cared for my father with so much tenderness in his final weeks — in his own bed, comfortable, with his grandchildren close by. They honored his wishes every step of the way, and I will always be grateful for the peace they gave our family.',
     author: 'Linda O.',
     relation: 'Daughter',
     location: 'Denver, CO',
@@ -182,7 +182,7 @@ const STORIES = [
   {
     id: 'kevin-j',
     quote:
-      'Six weeks after the valve replacement I was walking a mile a day. The PT scaled up gradually — no heart-rate scares, no setbacks. I felt safer at home than I did at the cardiac unit.',
+      'Six weeks after my valve replacement I was walking a mile a day. My PT scaled everything up gradually — steady heart rate, no setbacks, and she celebrated every milestone with me. Recovering at home felt calm, supported, and deeply reassuring.',
     author: 'Kevin J.',
     relation: 'Patient',
     location: 'Chicago, IL',
@@ -199,7 +199,7 @@ const STORIES = [
   {
     id: 'nancy-w',
     quote:
-      'The tremor isn\'t gone, but the falls are. That is everything. Mom still lives alone at 79 because Haven put the right routine, the right meds, and the right people in place.',
+      'The tremor is still there, but Mom feels steady on her feet again — and that is everything. At 79 she is still happily in her own home, with the right routine, the right medications, and a Haven team that truly cares about her.',
     author: 'Nancy W.',
     relation: 'Daughter',
     location: 'Boston, MA',
@@ -216,7 +216,7 @@ const STORIES = [
   {
     id: 'isabella-r',
     quote:
-      'Between chemo cycles, the Haven nurse monitored Mom\'s counts and called the oncologist directly when things shifted. We never drove to the ER once during her treatment.',
+      'Between chemo cycles, the Haven nurse kept a careful eye on Mom\'s counts and stayed in close touch with her oncologist whenever something needed attention. Their communication was seamless, and Mom felt cared for through every step of her treatment.',
     author: 'Isabella R.',
     relation: 'Daughter',
     location: 'Albuquerque, NM',
@@ -233,7 +233,7 @@ const STORIES = [
   {
     id: 'patricia-k',
     quote:
-      'Three weeks post-op I was doing stairs unassisted. The PT showed up the same days every week — no surprises, no cancellations. I recovered faster than my friend who chose the facility.',
+      'Three weeks after surgery I was climbing stairs on my own. My PT arrived like clockwork, the same days every week — dependable, encouraging, and genuinely invested in my progress. Recovering at home was everything I hoped it would be.',
     author: 'Patricia K.',
     relation: 'Patient',
     location: 'Portland, OR',
@@ -250,7 +250,7 @@ const STORIES = [
   {
     id: 'robert-c',
     quote:
-      'For eighteen months I couldn\'t manage my own grocery list. The OT rebuilt my routines, one small task at a time. I work part-time again now. Haven gave me my brain back.',
+      'For eighteen months, even simple daily tasks felt out of reach. My OT met me exactly where I was and helped me rebuild my routines one small, encouraging step at a time. I am working part-time again — and I feel like myself once more.',
     author: 'Robert C.',
     relation: 'Patient',
     location: 'Nashville, TN',
