@@ -23,7 +23,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const FEATURED = {
   id: 'maria-c',
   quote:
-    'After Mom\'s stroke we thought she would never climb her own stairs again. Fourteen months later, she is up there watering her orchids. The same Haven nurse came every Tuesday. My mother learned her name before she learned mine again.',
+    'After Mom\'s stroke, we wondered if she would ever climb those stairs to her orchids again. Fourteen months later, she is up there every morning, watering them and humming to herself. The same Haven nurse arrived every Tuesday — patient, steady, and like family by the end. They did not just help Mom heal; they gave our mother back to us.',
   author: 'Maria C.',
   initials: 'MC',
   relation: 'Daughter, primary caregiver',
