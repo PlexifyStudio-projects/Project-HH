@@ -17,7 +17,7 @@
   background: $color-off-white;
   color: $color-text-ink;
   display: flex;
-  align-items: center;
+  align-items: safe center;
 
   @include respond-to(md) { padding-top: 180px; padding-bottom: 48px; }
 
